@@ -78,17 +78,19 @@ func all_procs(procs []Procs) []Procs {
 	return procs
 }
 
-func print_all() {
+func pid() string {
+	var res string
 	//procs is a structure table
 	var procs []Procs
 	//append to procs all new data
 	procs = all_procs(procs)
 	//print all data
 	for _, proc := range procs {
-		fmt.Println(" PID:\t\t", proc.PID, "\n PWD:\t\t", proc.Pwd, "\n CWD:\t\t", proc.Cwd, "\n", proc.Size, "\n", proc.Rss, "\n", proc.Pss, "\n", proc.Swap, "\n------")
+		res += " PID:\t\t" + proc.PID + "\n PWD:\t\t" + proc.Pwd + "\n CWD:\t\t" + proc.Cwd + "\n" + proc.Size + "\n" + proc.Rss + "\n" + proc.Pss + "\n" + proc.Swap + "\n------\n"
 	}
+	return res
 }
 
 func main() {
-	print_all()
+	fmt.Println(pid())
 }
