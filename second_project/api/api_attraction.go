@@ -31,16 +31,19 @@ func initAttractions() []Attraction {
 	return content
 }
 
+// Write in file
 func syncFile() {
 	jsonData, _ := json.Marshal(listAttractions)
 	os.WriteFile("./attractions.json", jsonData, 0700)
 }
 
+// Get all attractions
 func getAttractions() string {
 	jsonData, _ := json.Marshal(listAttractions)
 	return string(jsonData)
 }
 
+// Get a specific attractions
 func getAttraction(id uint) (string, bool) {
 	for _, attraction := range listAttractions {
 		if attraction.Id == id {
@@ -59,11 +62,13 @@ func getLastId() uint {
 	}
 }
 
+// Add to the list a new attraction
 func createAttraction(attraction Attraction) {
 	listAttractions = append(listAttractions, attraction)
 	syncFile()
 }
 
+// Match (or not) with the id in parameter with id of attraction
 func getAttractionIndex(id uint) int {
 	for index, attraction := range listAttractions {
 		if attraction.Id == id {

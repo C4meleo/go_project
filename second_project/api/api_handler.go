@@ -29,6 +29,7 @@ func returnError(err string) (string, int) {
 // Handle GET request
 func getHandler(args url.Values) (string, int) {
 	// If param id in form then return the requested attraction
+	// If value exist
 	if id, ok := args["id"]; ok {
 
 		// Convert id to number
@@ -70,6 +71,7 @@ func postHandler(args url.Values) (string, int) {
 	}
 
 	// Get InPark
+	// If value exist
 	if arg, ok := args["in_park"]; ok {
 		if len(arg[0]) > 255 {
 			return returnError("Parameter 'in_park' too long")
@@ -80,6 +82,7 @@ func postHandler(args url.Values) (string, int) {
 	}
 
 	// Get Place
+	// If value exist
 	if arg, ok := args["place"]; ok {
 		if len(arg[0]) > 255 {
 			return returnError("Parameter 'place' too long")
@@ -90,6 +93,7 @@ func postHandler(args url.Values) (string, int) {
 	}
 
 	// Get Manufacturer
+	// If value exist
 	if arg, ok := args["manufacturer"]; ok {
 		if len(arg[0]) > 255 {
 			return returnError("Parameter 'manufacturer' too long")
@@ -133,6 +137,7 @@ func putHandler(args url.Values) (string, int) {
 		return returnError("Not found")
 	}
 
+	// If value exist
 	if arg, ok := args["name"]; ok {
 		if len(arg[0]) > 255 {
 			return returnError("Parameter 'name' too long")
@@ -147,6 +152,7 @@ func putHandler(args url.Values) (string, int) {
 		listAttractions[index].InPark = arg[0]
 	}
 
+	// If value exist
 	if arg, ok := args["place"]; ok {
 		if len(arg[0]) > 255 {
 			return returnError("Parameter 'place' too long")
@@ -154,6 +160,7 @@ func putHandler(args url.Values) (string, int) {
 		listAttractions[index].Place = arg[0]
 	}
 
+	// If value exist
 	if arg, ok := args["manufacturer"]; ok {
 		if len(arg[0]) > 255 {
 			return returnError("Parameter 'manufacturer' too long")
@@ -227,6 +234,7 @@ func handleAttractions(w http.ResponseWriter, r *http.Request) {
 	header := w.Header()
 	header.Add("Content-Type", "text/json")
 
+	//Define the method used
 	switch r.Method {
 	case "GET":
 		response, statusCode = getHandler(r.Form)
