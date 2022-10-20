@@ -10,6 +10,7 @@ type Attraction struct {
 	Id           uint
 	Name         string
 	InPark       string
+	Place        string
 	Manufacturer string
 }
 

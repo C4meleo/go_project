@@ -79,6 +79,16 @@ func postHandler(args url.Values) (string, int) {
 		return returnError("Missing parameter 'in_park'")
 	}
 
+	// Get Place
+	if arg, ok := args["place"]; ok {
+		if len(arg[0]) > 255 {
+			return returnError("Parameter 'place' too long")
+		}
+		newAttraction.Place = arg[0]
+	} else {
+		return returnError("Missing parameter 'place'")
+	}
+
 	// Get Manufacturer
 	if arg, ok := args["manufacturer"]; ok {
 		if len(arg[0]) > 255 {
@@ -135,6 +145,13 @@ func putHandler(args url.Values) (string, int) {
 			return returnError("Parameter 'in_park' too long")
 		}
 		listAttractions[index].InPark = arg[0]
+	}
+
+	if arg, ok := args["place"]; ok {
+		if len(arg[0]) > 255 {
+			return returnError("Parameter 'place' too long")
+		}
+		listAttractions[index].Place = arg[0]
 	}
 
 	if arg, ok := args["manufacturer"]; ok {
