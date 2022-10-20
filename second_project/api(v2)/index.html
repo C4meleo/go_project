@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Bare - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">API REST in GOlang</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container">
+        <tr>
+            <td id="id">{{.Id}}</td>
+            <td><input type="text" placeholder="name" id="name" name="name" required="required"></td>
+            <td><input type="text" placeholder="park" id="park" name="park" required="required"></td>
+            <td><input type="text" placeholder="place" id="place" name="place" required="required"></td>
+            <td><input type="text" placeholder="manufacturer" id="manufacturer" name="manufacturer" required="required"></td>
+            <td><input id="butt-create" type="button" value="Create" onclick={{postHandler()}}></td>
+        </tr>
+        {{range .}}
+        <tr>
+                <td id="id">{{.Id}}</td>
+                <td><input type="text" placeholder="name" id="name" name="name" required="required" value="{{.Name}}"></td>
+                <td><input type="text" placeholder="park" id="park" name="park" required="required" value="{{.InPark}}"></td>
+                <td><input type="text" placeholder="place" id="place" name="place" required="required" value="{{.Place}}"></td>
+                <td><input type="text" placeholder="manufacturer" id="manufacturer" name="manufacturer" required="required" value="{{.Manufacturer}}"></td>
+                <td><input id="butt_edit" type="button" value="Edit" onclick={{putHandler()}}></td>
+                <td><input id="butt-delete" type="button" value="Delete" onclick={{deleteHandler()}}></td>
+        </tr>
+        {{end}}
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
